@@ -1,0 +1,12 @@
+{
+  "device": "mps",
+  "n_mels": 80,
+  "groups": 2,
+  "epochs": 5,
+  "batch_size": 128,
+  "num_parameters": 35874,
+  "flops": 5581986,
+  "best_val_accuracy": 0.9551681195516812,
+  "test_loss": 0.18300726177912313,
+  "test_accuracy": 0.9453883495145631
+}
