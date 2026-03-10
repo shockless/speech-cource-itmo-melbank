@@ -34,7 +34,6 @@
 
 В ходе экспериментов сохранялись:
 
-- `train_loss`
 - `validation_accuracy`
 - `test_accuracy`
 - время эпохи
@@ -52,11 +51,9 @@
 - `n_mels in [20, 40, 80]`
 - `groups in [1, 2, 4, 8, 16]`
 
-Некоторые комбинации были невалидны, так как grouped convolution требует делимости числа каналов на `groups`. Были пропущены:
+Невалидные комбинации, которые были пропущены:
 
-- `(20, 8)`
-- `(20, 16)`
-- `(40, 16)`
+- `(20, 8), (20, 16), (40, 16)`
 
 Сводные результаты:
 
@@ -75,9 +72,63 @@
 | 80 | 8 | 11682 | 1400226 | 0.9417 | 6.57 |
 | 80 | 16 | 7650 | 703266 | 0.9551 | 6.54 |
 
+## Graphs for `groups`
+
+Графики ниже построены для среза `n_mels = 80`.
+
+### Epoch Training Time vs Groups
+
+![Epoch training time vs groups](outputs/full_grid_experiments/plots/epoch_time_vs_groups.png)
+
+### Parameters vs Groups
+
+![Parameters vs groups](outputs/full_grid_experiments/plots/parameters_vs_groups.png)
+
+### FLOPs vs Groups
+
+![FLOPs vs groups](outputs/full_grid_experiments/plots/flops_vs_groups.png)
+
+### Test Accuracy vs Groups
+
+![Test accuracy vs groups](outputs/full_grid_experiments/plots/test_accuracy_vs_groups.png)
+
+## Graphs for `n_mels`
+
+Графики ниже построены для среза `groups = 1`.
+
+### Epoch Training Time vs n_mels
+
+![Epoch training time vs n_mels](outputs/full_grid_experiments/plots/epoch_time_vs_n_mels.png)
+
+### Parameters vs n_mels
+
+![Parameters vs n_mels](outputs/full_grid_experiments/plots/parameters_vs_n_mels.png)
+
+### FLOPs vs n_mels
+
+![FLOPs vs n_mels](outputs/full_grid_experiments/plots/flops_vs_n_mels.png)
+
+### Test Accuracy vs n_mels
+
+![Test accuracy vs n_mels](outputs/full_grid_experiments/plots/test_accuracy_vs_n_mels.png)
+
+## Quality Across Full Grid
+
+### Test Accuracy Heatmap
+
+![Test accuracy heatmap](outputs/full_grid_experiments/plots/test_accuracy_heatmap.png)
+
+### Test Accuracy vs Groups by n_mels
+
+![Test accuracy vs groups by n_mels](outputs/full_grid_experiments/plots/test_accuracy_vs_groups_by_n_mels.png)
+
+### Test Accuracy vs n_mels by groups
+
+![Test accuracy vs n_mels by groups](outputs/full_grid_experiments/plots/test_accuracy_vs_n_mels_by_groups.png)
+
 ## Analysis of `n_mels`
 
-Для анализа влияния числа mel-фильтробанков удобно сравнить конфигурации при `groups = 1`.
+Для анализа влияния числа mel-фильтробанков сравним конфигурации при `groups = 1`.
 
 | n_mels | params | FLOPs | test accuracy | mean epoch time, s |
 | --- | ---: | ---: | ---: | ---: |
@@ -93,7 +144,7 @@
 
 ## Analysis of `groups`
 
-Для анализа влияния grouped convolution удобно сравнить конфигурации при `n_mels = 80`.
+Для анализа влияния grouped convolution сравним конфигурации при `n_mels = 80`.
 
 | groups | params | FLOPs | test accuracy | mean epoch time, s |
 | --- | ---: | ---: | ---: | ---: |
