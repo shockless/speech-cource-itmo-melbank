@@ -12,3 +12,4 @@ __pycache__/
 *.pyzwzwz
 data/SpeechCommands/
 data/speech_commands_v0.02.tar.gz
+*.pt
